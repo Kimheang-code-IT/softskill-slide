@@ -47,7 +47,7 @@
       html,
       body {
         font-family: "Inter", sans-serif;
-        background: var(--bg);
+        background: radial-gradient(circle at top left, rgba(255,255,255,0.15) 0%, var(--bg) 35%);
         color: var(--fg);
         overflow: hidden;
         height: 100vh;
@@ -177,211 +177,313 @@
         box-shadow: 0 0 14px rgba(26, 115, 232, 0.4);
       }
 
-  /* Persistent Global Header */
-  .persistent-header {
-    position: fixed;
-    top: 0; left: 0; width: 100%;
-    height: 70px;
-    background: rgba(5, 10, 21, 0.4);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
-    z-index: 500;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 40px;
-    transition: all 0.3s;
-  }
-  .header-left {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-  }
-  .header-logo { height: 32px; width: auto; }
-  .header-divider { width: 1px; height: 24px; background: var(--border); }
-  #headerSlideTitle {
-    font-size: 15px;
-    font-weight: 700;
-    color: var(--fg);
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    opacity: 0.8;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    display: inline-block;
-  }
-  
-  .header-right {
-    display: flex;
-    align-items: center;
-    gap: 24px;
-  }
-  .nav-controls {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background: rgba(255,255,255,0.03);
-    padding: 6px;
-    border-radius: 12px;
-    border: 1px solid var(--border);
-  }
-  .nav-btn {
-    width: 34px; height: 34px;
-    border-radius: 8px;
-    border: 1px solid transparent;
-    background: transparent;
-    color: var(--fg);
-    cursor: pointer;
-    display: flex; align-items: center; justify-content: center;
-    transition: all 0.2s;
-  }
-  .nav-btn:hover { background: rgba(255,255,255,0.05); border-color: var(--border); }
-  .nav-btn:disabled { opacity: 0.2; cursor: default; }
-  .nav-btn i { width: 18px; height: 18px; }
-  
-  .header-counter {
-    font-size: 14px;
-    font-weight: 700;
-    color: var(--muted);
-    min-width: 60px;
-    text-align: center;
-    display: flex; align-items: baseline; gap: 4px;
-    justify-content: center;
-  }
-  .header-counter .current { color: var(--accent); font-size: 18px; }
+      /* Persistent Global Header */
+      .persistent-header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 70px;
+        background: transparent;
+        backdrop-filter: blur(20px);
+        z-index: 500;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 40px;
+        transition: all 0.3s;
+      }
+      .header-left {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+      .header-logo {
+        height: 32px;
+        width: auto;
+      }
+      .header-divider {
+        display: none; /* Removed as requested/implied by "on the left the white" prominence */
+      }
+      #headerSlideTitle {
+        font-size: 24px;
+        font-weight: 900;
+        color: white;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        opacity: 1;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        display: inline-block;
+      }
 
-  /* Adjust Slide Padding for Header */
-  .slide {
-    padding-top: 100px;
-  }
+      .header-right {
+        display: flex;
+        align-items: center;
+        gap: 24px;
+      }
+      .nav-controls {
+        position: fixed;
+        bottom: 30px;
+        right: 40px;
+        z-index: 600;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        background: rgba(15, 23, 42, 0.8);
+        backdrop-filter: blur(15px);
+        padding: 10px 20px;
+        border-radius: 50px;
+        border: 1px solid var(--border);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .nav-controls:hover {
+        transform: translateY(-5px);
+        border-color: var(--accent);
+        background: rgba(26, 115, 232, 0.1);
+      }
+      .nav-btn {
+        width: 34px;
+        height: 34px;
+        border-radius: 8px;
+        border: 1px solid transparent;
+        background: transparent;
+        color: var(--fg);
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+      }
+      .nav-btn:hover {
+        background: rgba(255, 255, 255, 0.05);
+        border-color: var(--border);
+      }
+      .nav-btn:disabled {
+        opacity: 0.2;
+        cursor: default;
+      }
+      .nav-btn i {
+        width: 18px;
+        height: 18px;
+      }
 
-  /* Cinematic Cover UI Enhancement */
-  .cover-new-ui {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-height: 100vh;
-    padding: 0 80px;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero-flex {
-    display: grid;
-    grid-template-columns: 1fr 1.3fr;
-    gap: 80px;
-    align-items: center;
-    position: relative;
-    z-index: 10;
-  }
-  .meet-logo-large {
-    height: 80px;
-    width: auto;
-    margin-bottom: 24px;
-    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
-  }
-  .slide[data-slide="0"] .hero-title-main,
-  .cover-new-ui h1 {
-    display: block !important;
-    font-size: clamp(60px, 7vw, 100px);
-    font-weight: 950;
-    line-height: 1.1;
-    letter-spacing: -4px;
-    margin-bottom: 36px;
-    color: var(--fg);
-    filter: drop-shadow(0 20px 40px rgba(0,0,0,0.4));
-  }
-  .hero-title-main span {
-    display: block;
-    background: linear-gradient(90deg, var(--accent), #4285f4, var(--accent2));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    padding-bottom: 10px;
-  }
-  .presented-by {
-    background: rgba(26, 115, 232, 0.1);
-    border: 1px solid rgba(26, 115, 232, 0.2);
-    padding: 8px 20px;
-    border-radius: 100px;
-    font-size: 13px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    width: fit-content;
-    margin-bottom: 24px;
-    backdrop-filter: blur(10px);
-  }
-  .glass-card-info { display: flex; gap: 24px; margin-top: 50px; }
-  .glass-pill {
-    background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.01));
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255,255,255,0.1);
-    padding: 24px 32px;
-    border-radius: 28px;
-    display: flex; flex-direction: column; gap: 8px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  .glass-pill:hover {
-    transform: translateY(-10px);
-    border-color: var(--accent);
-    background: rgba(255,255,255,0.08);
-    box-shadow: 0 30px 60px rgba(26, 115, 232, 0.2);
-  }
-  .pill-label { font-size: 11px; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 1.5px; }
-  .pill-value { font-size: 20px; font-weight: 700; color: var(--fg); }
-  
-  .visual-wrapper { position: relative; perspective: 1000px; }
-  .visual-frame {
-    position: relative;
-    border-radius: 40px;
-    padding: 16px;
-    background: rgba(255,255,255,0.02);
-    border: 1px solid rgba(255,255,255,0.1);
-    backdrop-filter: blur(30px);
-    box-shadow: 0 0 80px rgba(26, 115, 232, 0.2);
-    animation: heroFloat 8s ease-in-out infinite;
-    transform-style: preserve-3d;
-  }
-  @keyframes heroFloat {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-25px) rotate(1deg); }
-  }
-  .video-preview-new {
-    border-radius: 28px;
-    overflow: hidden;
-    aspect-ratio: 16/10;
-    background: #000;
-    position: relative;
-    box-shadow: inset 0 0 40px rgba(0,0,0,0.5);
-  }
-  .play-btn-large {
-    position: absolute;
-    top: 50%; left: 50%; transform: translate(-50%, -50%);
-    width: 90px; height: 90px;
-    background: var(--accent);
-    border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    color: white; z-index: 20;
-    box-shadow: 0 0 30px rgba(26, 115, 232, 0.5);
-    border: 4px solid rgba(255,255,255,0.2);
-    transition: all 0.3s;
-  }
-  .play-btn-large:hover {
-    transform: translate(-50%, -50%) scale(1.1);
-    background: #1967d2;
-  }
-  .video-slides { position: relative; width: 100%; height: 100%; }
-  .video-slides img {
-    position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-    object-fit: cover; opacity: 0;
-    animation: videoCycle 12s infinite ease-in-out;
-  }
-  .video-slides img:nth-child(2) { animation-delay: 4s; }
-  .video-slides img:nth-child(3) { animation-delay: 8s; }
-  @keyframes videoCycle {
-    0%, 5% { opacity: 0; transform: scale(1.15); }
-    10%, 30% { opacity: 1; transform: scale(1); }
-    35%, 100% { opacity: 0; transform: scale(1.05); }
-  }
+      .header-counter {
+        font-size: 14px;
+        font-weight: 700;
+        color: var(--muted);
+        min-width: 60px;
+        text-align: center;
+        display: flex;
+        align-items: baseline;
+        gap: 4px;
+        justify-content: center;
+      }
+      .header-counter .current {
+        color: var(--accent);
+        font-size: 18px;
+      }
+
+      /* Adjust Slide Padding for Header */
+      .slide {
+        padding-top: 100px;
+      }
+
+      /* Cinematic Cover UI Enhancement */
+      .cover-new-ui {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 0 80px;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero-flex {
+        display: grid;
+        grid-template-columns: 1fr 1.3fr;
+        gap: 80px;
+        align-items: center;
+        position: relative;
+        z-index: 10;
+      }
+      .meet-logo-large {
+        height: 80px;
+        width: auto;
+        margin-bottom: 24px;
+        filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+      }
+      .slide[data-slide="0"] .hero-title-main,
+      .cover-new-ui h1 {
+        display: block !important;
+        font-size: clamp(60px, 7vw, 100px);
+        font-weight: 950;
+        line-height: 1.1;
+        letter-spacing: -4px;
+        margin-bottom: 36px;
+        color: var(--fg);
+        filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.4));
+      }
+      .hero-title-main span {
+        display: block;
+        background: linear-gradient(
+          90deg,
+          var(--accent),
+          #4285f4,
+          var(--accent2)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        padding-bottom: 10px;
+      }
+      .presented-by {
+        background: rgba(26, 115, 232, 0.1);
+        border: 1px solid rgba(26, 115, 232, 0.2);
+        padding: 8px 20px;
+        border-radius: 100px;
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        width: fit-content;
+        margin-bottom: 24px;
+        backdrop-filter: blur(10px);
+      }
+      .glass-card-info {
+        display: flex;
+        gap: 24px;
+        margin-top: 50px;
+      }
+      .glass-pill {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.05),
+          rgba(255, 255, 255, 0.01)
+        );
+        backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        padding: 20px 28px;
+        border-radius: 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        min-width: 200px;
+      }
+      .glass-pill:hover {
+        transform: translateY(-10px);
+        border-color: var(--accent);
+        background: rgba(255, 255, 255, 0.08);
+        box-shadow: 0 30px 60px rgba(26, 115, 232, 0.2);
+      }
+      .pill-label {
+        font-size: 11px;
+        font-weight: 800;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        white-space: nowrap;
+      }
+      .pill-value {
+        font-size: 19px;
+        font-weight: 700;
+        color: var(--fg);
+        white-space: nowrap;
+      }
+
+      .visual-wrapper {
+        position: relative;
+        perspective: 1000px;
+      }
+      .visual-frame {
+        position: relative;
+        border-radius: 40px;
+        padding: 16px;
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(30px);
+        box-shadow: 0 0 80px rgba(26, 115, 232, 0.2);
+        animation: heroFloat 8s ease-in-out infinite;
+        transform-style: preserve-3d;
+      }
+      @keyframes heroFloat {
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+        50% {
+          transform: translateY(-25px) rotate(1deg);
+        }
+      }
+      .video-preview-new {
+        border-radius: 28px;
+        overflow: hidden;
+        aspect-ratio: 16/10;
+        background: #000;
+        position: relative;
+        box-shadow: inset 0 0 40px rgba(0, 0, 0, 0.5);
+      }
+      .play-btn-large {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90px;
+        height: 90px;
+        background: var(--accent);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        z-index: 20;
+        box-shadow: 0 0 30px rgba(26, 115, 232, 0.5);
+        border: 4px solid rgba(255, 255, 255, 0.2);
+        transition: all 0.3s;
+      }
+      .play-btn-large:hover {
+        transform: translate(-50%, -50%) scale(1.1);
+        background: #1967d2;
+      }
+      .video-slides {
+        position: relative;
+        width: 100%;
+        height: 100%;
+      }
+      .video-slides img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        opacity: 0;
+        animation: videoCycle 12s infinite ease-in-out;
+      }
+      .video-slides img:nth-child(2) {
+        animation-delay: 4s;
+      }
+      .video-slides img:nth-child(3) {
+        animation-delay: 8s;
+      }
+      @keyframes videoCycle {
+        0%,
+        5% {
+          opacity: 0;
+          transform: scale(1.15);
+        }
+        10%,
+        30% {
+          opacity: 1;
+          transform: scale(1);
+        }
+        35%,
+        100% {
+          opacity: 0;
+          transform: scale(1.05);
+        }
+      }
 
       /* Slides */
       .slides-wrapper {
@@ -921,16 +1023,16 @@
       .conclusion-pts {
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        gap: 30px;
         margin-top: 40px;
-        max-width: 900px;
+        max-width: 1000px;
         margin-left: auto;
         margin-right: auto;
       }
       .conc-pt {
         display: flex;
         align-items: center;
-        gap: 32px;
+        gap: 40px;
         padding: 24px 36px;
         background: rgba(255, 255, 255, 0.03);
         border-radius: 20px;
@@ -945,15 +1047,15 @@
         border-color: var(--accent);
       }
       .conc-num {
-        font-size: 48px;
+        font-size: 64px;
         font-weight: 900;
         color: var(--accent);
         opacity: 0.4;
-        min-width: 60px;
+        min-width: 80px;
         font-family: serif;
       }
       .conc-text {
-        font-size: 20px;
+        font-size: 26px;
         color: var(--fg);
         line-height: 1.45;
         font-weight: 500;
@@ -974,6 +1076,95 @@
         text-align: center;
         font-size: 52px;
         margin-bottom: 20px;
+      }
+
+      /* Slide 13 Table Compare */
+      .compare-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: var(--shadow);
+      }
+      .compare-table th {
+        padding: 20px;
+        font-size: 22px;
+        text-align: left;
+        border-bottom: 2px solid var(--border);
+      }
+      .compare-table th.good {
+        color: var(--accent2);
+        background: rgba(52, 168, 83, 0.1);
+      }
+      .compare-table th.bad {
+        color: var(--red);
+        background: rgba(234, 67, 53, 0.1);
+      }
+      .compare-table td {
+        padding: 18px 20px;
+        font-size: 18px;
+        border-bottom: 1px solid var(--border);
+        border-right: 1px solid var(--border);
+        vertical-align: top;
+        color: var(--fg);
+        line-height: 1.5;
+        width: 50%;
+      }
+      .compare-table tr:last-child td {
+        border-bottom: none;
+      }
+      .compare-table td:last-child {
+        border-right: none;
+      }
+
+      /* Enhanced Thank You Slide */
+      .thankyou-card-enhanced {
+        padding: 50px 40px;
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .ty-title-enhanced {
+        font-size: 80px;
+        font-weight: 900;
+        margin-bottom: 10px;
+        background: linear-gradient(135deg, var(--accent), var(--accent2));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        line-height: 1.1;
+      }
+      .ty-subtitle-enhanced {
+        font-size: 24px;
+        color: var(--muted);
+        margin-bottom: 40px;
+      }
+      .ty-grid-enhanced {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        width: 100%;
+      }
+      .ty-card-enhanced {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 20px;
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        transition: transform 0.3s;
+      }
+      .ty-card-enhanced:hover {
+        transform: translateY(-5px);
+        background: rgba(255, 255, 255, 0.08);
+        border-color: var(--accent);
+      }
+      .ty-card-enhanced .lucide {
+        color: var(--accent);
+        margin-bottom: 15px;
+        width: 36px;
+        height: 36px;
       }
 
       /* Slide 13 — Mute & Unmute: bigger col-item text */
@@ -1138,6 +1329,98 @@
         color: var(--accent);
       }
 
+      /* Our Team Slide Style */
+      .team-section {
+        margin-top: 60px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 50px;
+      }
+      .team-grid {
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        gap: 15px;
+        width: 100%;
+        perspective: 1000px;
+      }
+      .team-member {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+      }
+      .team-member:hover {
+        transform: translateY(-20px) scale(1.1);
+        z-index: 100 !important;
+      }
+      .member-circle {
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        border: 3px solid rgba(255, 255, 255, 0.1);
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        transition: all 0.3s;
+      }
+      .team-member:hover .member-circle {
+        border-color: var(--accent);
+        box-shadow: 0 0 40px rgba(26, 115, 232, 0.4);
+      }
+      .member-circle img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        filter: grayscale(0.4);
+        transition: filter 0.3s;
+      }
+      .team-member:hover img {
+        filter: grayscale(0);
+      }
+      .member-info-box {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .member-name {
+        font-size: 15px;
+        font-weight: 700;
+        color: white;
+        white-space: nowrap;
+      }
+      .member-role {
+        font-size: 10px;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        font-weight: 800;
+      }
+
+      /* Lead Member (Middle) */
+      .team-member.lead {
+        z-index: 50;
+      }
+      .team-member.lead .member-circle {
+        width: 180px;
+        height: 180px;
+        border-color: var(--accent);
+        border-width: 5px;
+        box-shadow: 0 20px 60px rgba(26, 115, 232, 0.3);
+      }
+      .team-member.lead .member-name {
+        font-size: 20px;
+        color: var(--accent);
+      }
+      .team-member.lead .member-role {
+        font-size: 11px;
+      }
+
       .presented-by {
         font-size: 14px;
         font-weight: 600;
@@ -1211,6 +1494,94 @@
       .d4 {
         animation-delay: 0.38s;
       }
+      /* Agenda Enhanced Style (Reference Style) */
+      .agenda-container-enhanced {
+        display: flex;
+        align-items: center;
+        background: transparent;
+        min-height: 540px;
+        position: relative;
+        margin-top: 40px;
+        gap: 40px;
+      }
+      .agenda-left-img {
+        width: 32%;
+        height: 500px;
+        position: relative;
+        margin-left: -5%; /* Shifted left as requested */
+        flex-shrink: 0;
+      }
+      .agenda-left-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        /* Pointed right side shape like the reference image */
+        clip-path: polygon(0% 0%, 82% 0%, 100% 50%, 82% 100%, 0% 100%);
+        border-radius: 0 40px 40px 0;
+      }
+      .agenda-badge-cyan {
+        position: absolute;
+        left: 32%;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 130px;
+        height: 190px;
+        background: #a5f3fc; /* Cyan */
+        border-radius: 100px 0 0 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 52px;
+        font-weight: 900;
+        color: #1e3a8a; /* Deep blue */
+        z-index: 10;
+        box-shadow: 10px 0 30px rgba(0, 0, 0, 0.08);
+      }
+      .agenda-content-enhanced {
+        flex: 1;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+      }
+      .agenda-blue-bar {
+        background: #1e3a8a;
+        color: white;
+        padding: 20px 50px;
+        font-size: 26px;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+      }
+      .agenda-items-grid {
+        padding: 30px 50px;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px 40px;
+      }
+      .agenda-item-ref {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 12px 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .agenda-item-ref .dot {
+        width: 10px;
+        height: 10px;
+        background: var(--accent);
+        border-radius: 50%;
+        flex-shrink: 0;
+        box-shadow: 0 0 15px var(--accent);
+      }
+      .agenda-item-ref .text {
+        font-size: 21px;
+        color: white;
+        font-weight: 600;
+        letter-spacing: -0.2px;
+        white-space: nowrap; /* Prevent wrapping as requested */
+      }
+      .agenda-item-ref:last-child {
+        border-bottom: none;
+      }
     </style>
   </head>
   <body>
@@ -1228,21 +1599,27 @@
         <span id="headerSlideTitle">Virtual Meeting Training</span>
       </div>
       <div class="header-right">
-        <div class="nav-controls">
-          <button id="btnPrevHeader" class="nav-btn" title="Previous (←)">
-            <i data-lucide="chevron-left"></i>
-          </button>
-          <div class="header-counter">
-            <span class="current" id="counterCurrentHeader">01</span>
-            <span style="opacity: 0.5">/</span>
-            <span class="total">20</span>
-          </div>
-          <button id="btnNextHeader" class="nav-btn" title="Next (→)">
-            <i data-lucide="chevron-right"></i>
-          </button>
-        </div>
+        <img
+          src="image/image.png"
+          alt="Google Meet Logo"
+          style="height: 38px; width: auto"
+        />
       </div>
     </header>
+
+    <div class="nav-controls">
+      <button id="btnPrevHeader" class="nav-btn" title="Previous (←)">
+        <i data-lucide="chevron-left"></i>
+      </button>
+      <div class="header-counter">
+        <span class="current" id="counterCurrentHeader">01</span>
+        <span style="opacity: 0.5">/</span>
+        <span class="total">21</span>
+      </div>
+      <button id="btnNextHeader" class="nav-btn" title="Next (→)">
+        <i data-lucide="chevron-right"></i>
+      </button>
+    </div>
 
     <div class="dot-nav" id="dotNav"></div>
 
@@ -1254,10 +1631,28 @@
         <div class="cover-new-ui">
           <div class="hero-flex">
             <div class="hero-text-block">
-              <div class="logo-top anim-up d1" style="text-align: center; margin-bottom: 20px;">
-                <img src="image/image.png" alt="Google Meet" class="meet-logo-large" style="height: 120px;" />
+              <div
+                class="logo-top anim-up d1"
+                style="text-align: center; margin-bottom: 20px"
+              >
+                <img
+                  src="image/image.png"
+                  alt="Google Meet"
+                  class="meet-logo-large"
+                  style="height: 120px"
+                />
               </div>
-              <h1 class="hero-title-main anim-up d2" style="margin-top: 0; white-space: nowrap; font-size: clamp(36px, 4.5vw, 60px); letter-spacing: -2px;">Virtual Meeting</h1>
+              <h1
+                class="hero-title-main anim-up d2"
+                style="
+                  margin-top: 0;
+                  white-space: nowrap;
+                  font-size: clamp(36px, 4.5vw, 60px);
+                  letter-spacing: -2px;
+                "
+              >
+                Virtual Meeting
+              </h1>
 
               <div class="glass-card-info anim-up d3">
                 <div class="glass-pill">
@@ -1266,14 +1661,17 @@
                 </div>
                 <div class="glass-pill">
                   <span class="pill-label">Subject</span>
-                  <span class="pill-value">Soft Skills  Era</span>
+                  <span class="pill-value">Soft Skills In Digital Era</span>
                 </div>
               </div>
             </div>
 
-            <div class="visual-wrapper anim-up d2" style="transform: scale(1.25); transform-origin: center center;">
+            <div
+              class="visual-wrapper anim-up d2"
+              style="transform: scale(1.25); transform-origin: center center"
+            >
               <div class="visual-frame">
-                <div class="video-preview-new" style="aspect-ratio: 4/3;">
+                <div class="video-preview-new" style="aspect-ratio: 4/3">
                   <div class="video-slides">
                     <img src="image/google-meet.jpg" alt="Preview" />
                     <img src="image/virtual-meeting.jpg" alt="Preview" />
@@ -1282,116 +1680,224 @@
                 </div>
               </div>
               <!-- Floating decorative elements -->
-              <div style="position: absolute; top: -20px; right: -20px; width: 60px; height: 60px; background: var(--accent2); border-radius: 50%; opacity: 0.2; filter: blur(20px);"></div>
-              <div style="position: absolute; bottom: -30px; left: -30px; width: 100px; height: 100px; background: var(--accent); border-radius: 50%; opacity: 0.1; filter: blur(30px);"></div>
+              <div
+                style="
+                  position: absolute;
+                  top: -20px;
+                  right: -20px;
+                  width: 60px;
+                  height: 60px;
+                  background: var(--accent2);
+                  border-radius: 50%;
+                  opacity: 0.2;
+                  filter: blur(20px);
+                "
+              ></div>
+              <div
+                style="
+                  position: absolute;
+                  bottom: -30px;
+                  left: -30px;
+                  width: 100px;
+                  height: 100px;
+                  background: var(--accent);
+                  border-radius: 50%;
+                  opacity: 0.1;
+                  filter: blur(30px);
+                "
+              ></div>
             </div>
           </div>
         </div>
       </section>
 
       <!-- ════════════════════════════════════
-       SLIDE 2 — AGENDA
+       SLIDE 2 — OUR TEAM
   ════════════════════════════════════ -->
       <section class="slide" data-slide="1">
         <div class="slide-inner">
-          <h2 class="slide-title anim-up d1">
-            Content &amp; <span class="blue">Agenda</span>
-          </h2>
-          <div class="agenda-list anim-up d3">
-            <!-- Left Column: 1-8 -->
-            <div class="agenda-col">
-              <div class="agenda-row">
-                <div class="num">01</div>
-                <div class="icon"><i data-lucide="monitor"></i></div>
-                <div class="text">What is a Virtual Meeting?</div>
+          <h2 class="slide-title anim-up d1">Meet Our Team</h2>
+          <div class="team-section">
+            <div class="team-grid anim-up d2">
+              <!-- Member 1 -->
+              <div class="team-member">
+                <div class="member-circle">
+                  <div style="width:100%; height:100%; background: linear-gradient(135deg, #1e3a8a, #3b82f6); display:flex; align-items:center; justify-content:center;">
+                    <i data-lucide="user" style="width:50%; height:50%; color:white; opacity:0.6;"></i>
+                  </div>
+                </div>
+                <div class="member-info-box">
+                  <span class="member-name">Sok Dara</span>
+                  <span class="member-role">IT Lead</span>
+                </div>
               </div>
-              <div class="agenda-row">
-                <div class="num">02</div>
-                <div class="icon"><i data-lucide="star"></i></div>
-                <div class="text">Why Meetings are Important</div>
+              <!-- Member 2 -->
+              <div class="team-member">
+                <div class="member-circle">
+                   <div style="width:100%; height:100%; background: linear-gradient(135deg, #10b981, #059669); display:flex; align-items:center; justify-content:center;">
+                    <i data-lucide="user" style="width:50%; height:50%; color:white; opacity:0.6;"></i>
+                  </div>
+                </div>
+                <div class="member-info-box">
+                  <span class="member-name">Keo Pisey</span>
+                  <span class="member-role">Coordinator</span>
+                </div>
               </div>
-              <div class="agenda-row">
-                <div class="num">03</div>
-                <div class="icon"><i data-lucide="video"></i></div>
-                <div class="text">What is Google Meet?</div>
+              <!-- Member 3 -->
+              <div class="team-member">
+                <div class="member-circle">
+                   <div style="width:100%; height:100%; background: linear-gradient(135deg, #f59e0b, #d97706); display:flex; align-items:center; justify-content:center;">
+                    <i data-lucide="user" style="width:50%; height:50%; color:white; opacity:0.6;"></i>
+                  </div>
+                </div>
+                <div class="member-info-box">
+                  <span class="member-name">Chan Nita</span>
+                  <span class="member-role">Specialist</span>
+                </div>
               </div>
-              <div class="agenda-row">
-                <div class="num">04</div>
-                <div class="icon"><i data-lucide="gift"></i></div>
-                <div class="text">Benefits of Google Meet</div>
+              <!-- Member 4 (Lead) -->
+              <div class="team-member lead">
+                <div class="member-circle">
+                   <div style="width:100%; height:100%; background: linear-gradient(135deg, #2563eb, #1d4ed8); display:flex; align-items:center; justify-content:center;">
+                    <i data-lucide="user" style="width:50%; height:50%; color:white; opacity:0.8;"></i>
+                  </div>
+                </div>
+                <div class="member-info-box">
+                  <span class="member-name">Lay Thou</span>
+                  <span class="member-role">Lead Instructor</span>
+                </div>
               </div>
-              <div class="agenda-row">
-                <div class="num">05</div>
-                <div class="icon"><i data-lucide="check-circle-2"></i></div>
-                <div class="text">Before Joining a Meeting</div>
+              <!-- Member 5 -->
+              <div class="team-member">
+                <div class="member-circle">
+                   <div style="width:100%; height:100%; background: linear-gradient(135deg, #8b5cf6, #7c3aed); display:flex; align-items:center; justify-content:center;">
+                    <i data-lucide="user" style="width:50%; height:50%; color:white; opacity:0.6;"></i>
+                  </div>
+                </div>
+                <div class="member-info-box">
+                  <span class="member-name">Mean Vichea</span>
+                  <span class="member-role">Technician</span>
+                </div>
               </div>
-              <div class="agenda-row">
-                <div class="num">06</div>
-                <div class="icon"><i data-lucide="wifi"></i></div>
-                <div class="text">Check Internet Connection</div>
+              <!-- Member 6 -->
+              <div class="team-member">
+                <div class="member-circle">
+                   <div style="width:100%; height:100%; background: linear-gradient(135deg, #ec4899, #db2777); display:flex; align-items:center; justify-content:center;">
+                    <i data-lucide="user" style="width:50%; height:50%; color:white; opacity:0.6;"></i>
+                  </div>
+                </div>
+                <div class="member-info-box">
+                  <span class="member-name">Seng Leakhena</span>
+                  <span class="member-role">Support</span>
+                </div>
               </div>
-              <div class="agenda-row">
-                <div class="num">07</div>
-                <div class="icon"><i data-lucide="mic"></i></div>
-                <div class="text">Prepare Device &amp; Mic</div>
-              </div>
-              <div class="agenda-row">
-                <div class="num">08</div>
-                <div class="icon"><i data-lucide="home"></i></div>
-                <div class="text">Choose a Quiet Place</div>
-              </div>
-            </div>
-
-            <!-- Right Column: 9-16 -->
-            <div class="agenda-col">
-              <div class="agenda-row">
-                <div class="num">09</div>
-                <div class="icon"><i data-lucide="log-in"></i></div>
-                <div class="text">Join a Google Meet Meeting</div>
-              </div>
-              <div class="agenda-row">
-                <div class="num">10</div>
-                <div class="icon"><i data-lucide="camera"></i></div>
-                <div class="text">Camera On / Off</div>
-              </div>
-              <div class="agenda-row">
-                <div class="num">11</div>
-                <div class="icon"><i data-lucide="mic-off"></i></div>
-                <div class="text">Mute &amp; Unmute Microphone</div>
-              </div>
-              <div class="agenda-row">
-                <div class="num">12</div>
-                <div class="icon"><i data-lucide="message-square"></i></div>
-                <div class="text">Use the Chat Box</div>
-              </div>
-              <div class="agenda-row">
-                <div class="num">13</div>
-                <div class="icon"><i data-lucide="screen-share"></i></div>
-                <div class="text">Share Your Screen</div>
-              </div>
-              <div class="agenda-row">
-                <div class="num">14</div>
-                <div class="icon"><i data-lucide="users"></i></div>
-                <div class="text">Meeting Etiquette Overview</div>
-              </div>
-              <div class="agenda-row">
-                <div class="num">15</div>
-                <div class="icon"><i data-lucide="clock"></i></div>
-                <div class="text">Be On Time</div>
-              </div>
-              <div class="agenda-row">
-                <div class="num">16</div>
-                <div class="icon"><i data-lucide="alert-triangle"></i></div>
-                <div class="text">Common Mistakes to Avoid</div>
+              <!-- Member 7 -->
+              <div class="team-member">
+                <div class="member-circle">
+                   <div style="width:100%; height:100%; background: linear-gradient(135deg, #64748b, #475569); display:flex; align-items:center; justify-content:center;">
+                    <i data-lucide="user" style="width:50%; height:50%; color:white; opacity:0.6;"></i>
+                  </div>
+                </div>
+                <div class="member-info-box">
+                  <span class="member-name">Heng Bora</span>
+                  <span class="member-role">Assistant</span>
+                </div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+      <!-- ════════════════════════════════════
+       SLIDE 2 — AGENDA
+  ════════════════════════════════════ -->
+      <section class="slide" data-slide="2">
+        <div class="slide-inner">
+          <h2 class="slide-title" style="display: none;">Agenda</h2>
+          <div class="agenda-container-enhanced anim-up d2">
+            <div class="agenda-left-img">
+              <img
+                src="image/agenda-meeting.jpg"
+                alt="People in meeting training"
+              />
+            </div>
 
-            <!-- Bottom Center: 17 -->
-            <div class="agenda-center">
-              <div class="agenda-row" style="width: 100%; max-width: 500px; border-bottom: none; background: rgba(255,255,255,0.03); border-radius: 12px; padding: 14px 24px;">
-                <div class="num">17</div>
-                <div class="icon"><i data-lucide="flag"></i></div>
-                <div class="text">Conclusion</div>
+            <div class="agenda-content-enhanced">
+              <div class="agenda-items-grid">
+                <!-- Column 1 -->
+                <div class="agenda-items-col">
+                  <div class="agenda-item-ref">
+                    <div class="dot"></div>
+                    <div class="text">What is a Virtual Meeting?</div>
+                  </div>
+                  <div class="agenda-item-ref">
+                    <div class="dot"></div>
+                    <div class="text">Why Meetings are Important</div>
+                  </div>
+                  <div class="agenda-item-ref">
+                    <div class="dot"></div>
+                    <div class="text">What is Google Meet?</div>
+                  </div>
+                  <div class="agenda-item-ref">
+                    <div class="dot"></div>
+                    <div class="text">Benefits of Google Meet</div>
+                  </div>
+                  <div class="agenda-item-ref">
+                    <div class="dot"></div>
+                    <div class="text">Before Joining a Meeting</div>
+                  </div>
+                  <div class="agenda-item-ref">
+                    <div class="dot"></div>
+                    <div class="text">Check Internet Connection</div>
+                  </div>
+                  <div class="agenda-item-ref">
+                    <div class="dot"></div>
+                    <div class="text">Prepare Device &amp; Mic</div>
+                  </div>
+                  <div class="agenda-item-ref">
+                    <div class="dot"></div>
+                    <div class="text">Choose a Quiet Place</div>
+                  </div>
+                  <div class="agenda-item-ref">
+                    <div class="dot"></div>
+                    <div class="text">Join a Google Meet Meeting</div>
+                  </div>
+                </div>
+
+                <!-- Column 2 -->
+                <div class="agenda-items-col">
+                  <div class="agenda-item-ref">
+                    <div class="dot"></div>
+                    <div class="text">Camera On / Off</div>
+                  </div>
+                  <div class="agenda-item-ref">
+                    <div class="dot"></div>
+                    <div class="text">Mute &amp; Unmute Microphone</div>
+                  </div>
+                  <div class="agenda-item-ref">
+                    <div class="dot"></div>
+                    <div class="text">Use the Chat Box</div>
+                  </div>
+                  <div class="agenda-item-ref">
+                    <div class="dot"></div>
+                    <div class="text">Share Screen</div>
+                  </div>
+                  <div class="agenda-item-ref">
+                    <div class="dot"></div>
+                    <div class="text">Meeting Etiquette Overview</div>
+                  </div>
+                  <div class="agenda-item-ref">
+                    <div class="dot"></div>
+                    <div class="text">Be On Time</div>
+                  </div>
+                  <div class="agenda-item-ref">
+                    <div class="dot"></div>
+                    <div class="text">Common Mistakes to Avoid</div>
+                  </div>
+                  <div class="agenda-item-ref">
+                    <div class="dot"></div>
+                    <div class="text">Conclusion</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -1402,7 +1908,7 @@
       <!-- ════════════════════════════════════
        SLIDE 3 — WHAT IS A VIRTUAL MEETING
   ════════════════════════════════════ -->
-      <section class="slide" data-slide="2">
+      <section class="slide" data-slide="3">
         <div class="slide-inner">
           <h2 class="slide-title anim-up d1">
             What is a <span class="blue">Virtual Meeting?</span>
@@ -1459,36 +1965,53 @@
       <!-- ════════════════════════════════════
        SLIDE 4 — WHY VIRTUAL MEETINGS ARE IMPORTANT
   ════════════════════════════════════ -->
-      <section class="slide" data-slide="3">
+      <section class="slide" data-slide="4">
         <div class="slide-inner">
           <h2 class="slide-title anim-up d1">
             Why Virtual Meetings <span class="green">Are Important</span>
           </h2>
           <div class="split-layout anim-up d2">
-            <div class="cards-grid cols-2" style="margin-top:0;">
+            <div class="cards-grid cols-2" style="margin-top: 0">
               <div class="card">
                 <div class="card-icon"><i data-lucide="globe"></i></div>
                 <h3>Connect Across Distances</h3>
-                <p>Teams and classmates can work together even if they are in different cities or countries.</p>
+                <p>
+                  Teams and classmates can work together even if they are in
+                  different cities or countries.
+                </p>
               </div>
               <div class="card">
                 <div class="card-icon green"><i data-lucide="clock"></i></div>
                 <h3>Save Time and Money</h3>
-                <p>No travel needed. Meetings can happen instantly, saving both time and transport costs.</p>
+                <p>
+                  No travel needed. Meetings can happen instantly, saving both
+                  time and transport costs.
+                </p>
               </div>
               <div class="card">
-                <div class="card-icon yellow"><i data-lucide="calendar"></i></div>
+                <div class="card-icon yellow">
+                  <i data-lucide="calendar"></i>
+                </div>
                 <h3>Flexible Scheduling</h3>
-                <p>Meetings can be arranged quickly. Anyone can join from wherever they are at the right time.</p>
+                <p>
+                  Meetings can be arranged quickly. Anyone can join from
+                  wherever they are at the right time.
+                </p>
               </div>
               <div class="card">
                 <div class="card-icon red"><i data-lucide="home"></i></div>
                 <h3>Support Remote Work</h3>
-                <p>Many jobs now allow working from home. Virtual meetings make remote work effective.</p>
+                <p>
+                  Many jobs now allow working from home. Virtual meetings make
+                  remote work effective.
+                </p>
               </div>
             </div>
             <div class="split-img">
-              <img src="image/importance.jpg" alt="Remote team collaborating across distances" />
+              <img
+                src="image/importance.jpg"
+                alt="Remote team collaborating across distances"
+              />
             </div>
           </div>
         </div>
@@ -1498,7 +2021,7 @@
       <!-- ════════════════════════════════════
        SLIDE 5 — WHAT IS GOOGLE MEET
   ════════════════════════════════════ -->
-      <section class="slide" data-slide="4">
+      <section class="slide" data-slide="5">
         <div class="slide-inner">
           <h2 class="slide-title anim-up d1">
             What is <span class="blue">Google Meet?</span>
@@ -1555,35 +2078,54 @@
       <!-- ════════════════════════════════════
        SLIDE 6 — BENEFITS OF GOOGLE MEET
   ════════════════════════════════════ -->
-      <section class="slide" data-slide="5">
+      <section class="slide" data-slide="6">
         <div class="slide-inner">
           <h2 class="slide-title anim-up d1">
             Benefits of <span class="green">Google Meet</span>
           </h2>
           <div class="split-layout anim-up d2">
             <div class="split-img">
-              <img src="image/benefits.jpg" alt="Benefits of Google Meet video call" />
+              <img
+                src="image/benefits.jpg"
+                alt="Benefits of Google Meet video call"
+              />
             </div>
-            <div class="cards-grid cols-2" style="margin-top:0;">
+            <div class="cards-grid cols-2" style="margin-top: 0">
               <div class="card">
                 <div class="card-icon"><i data-lucide="gift"></i></div>
                 <h3>Free to Use</h3>
-                <p>Anyone with a Google account can start or join a meeting at no cost.</p>
+                <p>
+                  Anyone with a Google account can start or join a meeting at no
+                  cost.
+                </p>
               </div>
               <div class="card">
-                <div class="card-icon green"><i data-lucide="shield-check"></i></div>
+                <div class="card-icon green">
+                  <i data-lucide="shield-check"></i>
+                </div>
                 <h3>Safe and Secure</h3>
-                <p>Google Meet uses encryption to keep your meetings private and protected.</p>
+                <p>
+                  Google Meet uses encryption to keep your meetings private and
+                  protected.
+                </p>
               </div>
               <div class="card">
-                <div class="card-icon yellow"><i data-lucide="smartphone"></i></div>
+                <div class="card-icon yellow">
+                  <i data-lucide="smartphone"></i>
+                </div>
                 <h3>All Devices</h3>
-                <p>Use it on a computer, tablet, or smartphone — works the same on all.</p>
+                <p>
+                  Use it on a computer, tablet, or smartphone — works the same
+                  on all.
+                </p>
               </div>
               <div class="card">
                 <div class="card-icon red"><i data-lucide="globe-2"></i></div>
                 <h3>No Download Needed</h3>
-                <p>Join directly from your browser — no software installation required.</p>
+                <p>
+                  Join directly from your browser — no software installation
+                  required.
+                </p>
               </div>
             </div>
           </div>
@@ -1594,7 +2136,7 @@
       <!-- ════════════════════════════════════
        SLIDE 7 — BEFORE JOINING A MEETING
   ════════════════════════════════════ -->
-      <section class="slide" data-slide="6">
+      <section class="slide" data-slide="7">
         <div class="slide-inner">
           <h2 class="slide-title anim-up d1">
             Before Joining <span class="blue">a Meeting</span>
@@ -1603,27 +2145,45 @@
             <div class="steps-flow">
               <div class="step-row">
                 <div class="step-num">1</div>
-                <p><strong>Check your internet connection.</strong> Make sure your WiFi or mobile data is working well.</p>
+                <p>
+                  <strong>Check your internet connection.</strong> Make sure
+                  your WiFi or mobile data is working well.
+                </p>
               </div>
               <div class="step-row">
                 <div class="step-num green">2</div>
-                <p><strong>Prepare your device.</strong> Charge your phone or laptop so it does not die during the meeting.</p>
+                <p>
+                  <strong>Prepare your device.</strong> Charge your phone or
+                  laptop so it does not die during the meeting.
+                </p>
               </div>
               <div class="step-row">
                 <div class="step-num yellow">3</div>
-                <p><strong>Test your microphone and camera.</strong> Make sure both are working before the meeting starts.</p>
+                <p>
+                  <strong>Test your microphone and camera.</strong> Make sure
+                  both are working before the meeting starts.
+                </p>
               </div>
               <div class="step-row">
                 <div class="step-num">4</div>
-                <p><strong>Find a quiet place.</strong> Choose a location with no loud noises so others can hear you clearly.</p>
+                <p>
+                  <strong>Find a quiet place.</strong> Choose a location with no
+                  loud noises so others can hear you clearly.
+                </p>
               </div>
               <div class="step-row">
                 <div class="step-num green">5</div>
-                <p><strong>Open Google Meet early.</strong> Join 2–3 minutes before the meeting time so you are ready.</p>
+                <p>
+                  <strong>Open Google Meet early.</strong> Join 2–3 minutes
+                  before the meeting time so you are ready.
+                </p>
               </div>
             </div>
             <div class="split-img">
-              <img src="image/preparation.jpg" alt="Person preparing for a video call" />
+              <img
+                src="image/preparation.jpg"
+                alt="Person preparing for a video call"
+              />
             </div>
           </div>
         </div>
@@ -1633,7 +2193,7 @@
       <!-- ════════════════════════════════════
        SLIDE 8 — CHECK INTERNET CONNECTION
   ════════════════════════════════════ -->
-      <section class="slide" data-slide="7">
+      <section class="slide" data-slide="8">
         <div class="slide-inner">
           <h2 class="slide-title anim-up d1">
             Check <span class="blue">Internet Connection</span>
@@ -1690,35 +2250,51 @@
       <!-- ════════════════════════════════════
        SLIDE 9 — PREPARE DEVICE AND MICROPHONE
   ════════════════════════════════════ -->
-      <section class="slide" data-slide="8">
+      <section class="slide" data-slide="9">
         <div class="slide-inner">
           <h2 class="slide-title anim-up d1">
             Prepare <span class="green">Device &amp; Microphone</span>
           </h2>
           <div class="split-layout anim-up d2">
             <div class="split-img">
-              <img src="image/device-setup.jpg" alt="Laptop microphone headset setup on desk" />
+              <img
+                src="image/device-setup.jpg"
+                alt="Laptop microphone headset setup on desk"
+              />
             </div>
-            <div class="cards-grid cols-2" style="margin-top:0;">
+            <div class="cards-grid cols-2" style="margin-top: 0">
               <div class="card">
-                <div class="card-icon"><i data-lucide="battery-charging"></i></div>
+                <div class="card-icon">
+                  <i data-lucide="battery-charging"></i>
+                </div>
                 <h3>Charge Your Device</h3>
-                <p>Plug in your laptop or phone before the meeting. A dead battery is very embarrassing.</p>
+                <p>
+                  Plug in your laptop or phone before the meeting. A dead
+                  battery is very embarrassing.
+                </p>
               </div>
               <div class="card">
                 <div class="card-icon green"><i data-lucide="mic"></i></div>
                 <h3>Test Your Microphone</h3>
-                <p>Go to Google Meet settings and do a microphone test. Make sure your voice is clear.</p>
+                <p>
+                  Go to Google Meet settings and do a microphone test. Make sure
+                  your voice is clear.
+                </p>
               </div>
               <div class="card">
                 <div class="card-icon yellow"><i data-lucide="camera"></i></div>
                 <h3>Test Your Camera</h3>
-                <p>Check that your camera is working and showing a clear image.</p>
+                <p>
+                  Check that your camera is working and showing a clear image.
+                </p>
               </div>
               <div class="card">
                 <div class="card-icon"><i data-lucide="volume-2"></i></div>
                 <h3>Check Your Speaker</h3>
-                <p>Make sure you can hear sound from your device. Adjust the volume before the meeting.</p>
+                <p>
+                  Make sure you can hear sound from your device. Adjust the
+                  volume before the meeting.
+                </p>
               </div>
             </div>
           </div>
@@ -1729,7 +2305,7 @@
       <!-- ════════════════════════════════════
        SLIDE 10 — CHOOSE A QUIET PLACE
   ════════════════════════════════════ -->
-      <section class="slide" data-slide="9">
+      <section class="slide" data-slide="10">
         <div class="slide-inner">
           <h2 class="slide-title anim-up d1">
             Choose a <span class="yellow">Quiet Place</span>
@@ -1786,7 +2362,7 @@
       <!-- ════════════════════════════════════
        SLIDE 11 — JOIN A GOOGLE MEET MEETING
   ════════════════════════════════════ -->
-      <section class="slide" data-slide="10">
+      <section class="slide" data-slide="11">
         <div class="slide-inner">
           <h2 class="slide-title anim-up d1">
             Join a <span class="blue">Google Meet</span> Meeting
@@ -1795,27 +2371,47 @@
             <div class="steps-flow">
               <div class="step-row">
                 <div class="step-num">1</div>
-                <p><strong>Open your browser</strong> and go to <strong>meet.google.com</strong> or open the Google Meet app on your phone.</p>
+                <p>
+                  <strong>Open your browser</strong> and go to
+                  <strong>meet.google.com</strong> or open the Google Meet app
+                  on your phone.
+                </p>
               </div>
               <div class="step-row">
                 <div class="step-num green">2</div>
-                <p><strong>Click the meeting link</strong> that was sent to you by email or chat — it will take you directly into the meeting room.</p>
+                <p>
+                  <strong>Click the meeting link</strong> that was sent to you
+                  by email or chat — it will take you directly into the meeting
+                  room.
+                </p>
               </div>
               <div class="step-row">
                 <div class="step-num yellow">3</div>
-                <p><strong>Enter the meeting code</strong> if you have one. Type the code in the "Enter a code" box and click Join.</p>
+                <p>
+                  <strong>Enter the meeting code</strong> if you have one. Type
+                  the code in the "Enter a code" box and click Join.
+                </p>
               </div>
               <div class="step-row">
                 <div class="step-num">4</div>
-                <p><strong>Allow camera and microphone</strong> access when your browser asks. This is needed to participate.</p>
+                <p>
+                  <strong>Allow camera and microphone</strong> access when your
+                  browser asks. This is needed to participate.
+                </p>
               </div>
               <div class="step-row">
                 <div class="step-num green">5</div>
-                <p><strong>Click "Join now"</strong> to enter the meeting room. You will see other participants on screen.</p>
+                <p>
+                  <strong>Click "Join now"</strong> to enter the meeting room.
+                  You will see other participants on screen.
+                </p>
               </div>
             </div>
             <div class="split-img">
-              <img src="image/join-meet.jpg" alt="Person joining a Google Meet video call" />
+              <img
+                src="image/join-meet.jpg"
+                alt="Person joining a Google Meet video call"
+              />
             </div>
           </div>
         </div>
@@ -1825,7 +2421,7 @@
       <!-- ════════════════════════════════════
        SLIDE 12 — CAMERA ON/OFF
   ════════════════════════════════════ -->
-      <section class="slide" data-slide="11">
+      <section class="slide" data-slide="12">
         <div class="slide-inner">
           <h2 class="slide-title anim-up d1">
             Camera <span class="green">On / Off</span>
@@ -1882,31 +2478,62 @@
       <!-- ════════════════════════════════════
        SLIDE 13 — MUTE AND UNMUTE MICROPHONE
   ════════════════════════════════════ -->
-      <section class="slide" data-slide="12">
+      <section class="slide" data-slide="13">
         <div class="slide-inner">
           <h2 class="slide-title anim-up d1">
             Mute &amp; Unmute <span class="blue">Microphone</span>
           </h2>
-          <div class="split-layout anim-up d2">
-            <div class="split-img">
-              <img src="image/mute-mic.jpg" alt="Microphone mute button close up" />
-            </div>
-            <div class="dos-donts" style="flex-direction: column; display: flex; gap: 12px;">
-              <div class="do-col">
-                <div class="col-head">✅ Good Habits</div>
-                <div class="col-item">🎤 Mute yourself when you are not speaking to reduce background noise for others.</div>
-                <div class="col-item">🔊 Unmute only when it is your turn to speak or when asked a question.</div>
-                <div class="col-item">⌨️ Use keyboard shortcut Ctrl + D (or Cmd + D on Mac) to quickly mute / unmute.</div>
-                <div class="col-item">👂 Always listen for your name before unmuting and speaking in a large meeting.</div>
-              </div>
-              <div class="dont-col">
-                <div class="col-head">❌ Avoid These</div>
-                <div class="col-item">🚫 Do not leave your mic on with loud background sounds like TV, traffic, or dogs barking.</div>
-                <div class="col-item">🚫 Do not forget to unmute before speaking — others will not hear you at all.</div>
-                <div class="col-item">🚫 Do not talk over other people. Wait for them to finish speaking first.</div>
-                <div class="col-item">🚫 Do not eat food near your microphone — the sound is very distracting for others.</div>
-              </div>
-            </div>
+          <div class="table-container anim-up d2" style="margin-top: 30px">
+            <table class="compare-table">
+              <thead>
+                <tr>
+                  <th class="good">✅ Good Habits</th>
+                  <th class="bad">❌ Avoid These</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    🎤 Mute yourself when you are not speaking to reduce
+                    background noise for others.
+                  </td>
+                  <td>
+                    🚫 Do not leave your mic on with loud background sounds like
+                    TV, traffic, or dogs barking.
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    🔊 Unmute only when it is your turn to speak or when asked a
+                    question.
+                  </td>
+                  <td>
+                    🚫 Do not forget to unmute before speaking — others will not
+                    hear you at all.
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    ⌨️ Use keyboard shortcut Ctrl + D (or Cmd + D on Mac) to
+                    quickly mute / unmute.
+                  </td>
+                  <td>
+                    🚫 Do not talk over other people. Wait for them to finish
+                    speaking first.
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    👂 Always listen for your name before unmuting and speaking
+                    in a large meeting.
+                  </td>
+                  <td>
+                    🚫 Do not eat food near your microphone — the sound is very
+                    distracting for others.
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
         <!-- Speaker notes: The mute button is shown at the bottom left of Google Meet. Keyboard shortcuts are very useful. Encourage students to practice. -->
@@ -1915,7 +2542,7 @@
       <!-- ════════════════════════════════════
        SLIDE 14 — USE CHAT BOX
   ════════════════════════════════════ -->
-      <section class="slide" data-slide="13">
+      <section class="slide" data-slide="14">
         <div class="slide-inner">
           <h2 class="slide-title anim-up d1">
             Use the <span class="green">Chat Box</span>
@@ -1972,7 +2599,7 @@
       <!-- ════════════════════════════════════
        SLIDE 15 — SHARE SCREEN
   ════════════════════════════════════ -->
-      <section class="slide" data-slide="14">
+      <section class="slide" data-slide="15">
         <div class="slide-inner">
           <h2 class="slide-title anim-up d1">
             Share <span class="blue">Screen</span>
@@ -2037,35 +2664,54 @@
       <!-- ════════════════════════════════════
        SLIDE 16 — MEETING ETIQUETTE OVERVIEW
   ════════════════════════════════════ -->
-      <section class="slide" data-slide="15">
+      <section class="slide" data-slide="16">
         <div class="slide-inner">
           <h2 class="slide-title anim-up d1">
             Meeting <span class="green">Etiquette</span> Overview
           </h2>
           <div class="split-layout anim-up d2">
             <div class="split-img">
-              <img src="image/etiquette.jpg" alt="Professional online meeting etiquette" />
+              <img
+                src="image/etiquette.jpg"
+                alt="Professional online meeting etiquette"
+              />
             </div>
-            <div class="cards-grid cols-2" style="margin-top:0;">
+            <div class="cards-grid cols-2" style="margin-top: 0">
               <div class="card">
                 <div class="card-icon"><i data-lucide="smile"></i></div>
                 <h3>Greet Politely</h3>
-                <p>Say hello when you join and goodbye when you leave. Small greetings make a good impression.</p>
+                <p>
+                  Say hello when you join and goodbye when you leave. Small
+                  greetings make a good impression.
+                </p>
               </div>
               <div class="card">
-                <div class="card-icon green"><i data-lucide="headphones"></i></div>
+                <div class="card-icon green">
+                  <i data-lucide="headphones"></i>
+                </div>
                 <h3>Listen Actively</h3>
-                <p>Pay attention to the speaker. Do not browse other websites during the meeting.</p>
+                <p>
+                  Pay attention to the speaker. Do not browse other websites
+                  during the meeting.
+                </p>
               </div>
               <div class="card">
-                <div class="card-icon yellow"><i data-lucide="bell-off"></i></div>
+                <div class="card-icon yellow">
+                  <i data-lucide="bell-off"></i>
+                </div>
                 <h3>Silence Your Phone</h3>
-                <p>Turn off notifications and phone ringtones before joining. Sounds are distracting.</p>
+                <p>
+                  Turn off notifications and phone ringtones before joining.
+                  Sounds are distracting.
+                </p>
               </div>
               <div class="card">
                 <div class="card-icon"><i data-lucide="user-x"></i></div>
                 <h3>Wait Your Turn</h3>
-                <p>Do not interrupt others. Raise your hand or use the chat to let others know you want to speak.</p>
+                <p>
+                  Do not interrupt others. Raise your hand or use the chat to
+                  let others know you want to speak.
+                </p>
               </div>
             </div>
           </div>
@@ -2076,7 +2722,7 @@
       <!-- ════════════════════════════════════
        SLIDE 17 — BE ON TIME
   ════════════════════════════════════ -->
-      <section class="slide" data-slide="16">
+      <section class="slide" data-slide="17">
         <div class="slide-inner">
           <h2 class="slide-title anim-up d1">
             Be <span class="yellow">On Time</span>
@@ -2133,7 +2779,7 @@
       <!-- ════════════════════════════════════
        SLIDE 18 — COMMON MISTAKES TO AVOID
   ════════════════════════════════════ -->
-      <section class="slide" data-slide="17">
+      <section class="slide" data-slide="18">
         <div class="slide-inner">
           <h2 class="slide-title anim-up d1">
             Common <span class="red">Mistakes</span> to Avoid
@@ -2141,28 +2787,66 @@
           <div class="split-layout anim-up d2">
             <div class="mistake-list">
               <div class="mistake-item">
-                <span class="mistake-icon"><i data-lucide="mic-off" style="color: var(--red)"></i></span>
-                <div class="mistake-text">Forgetting to unmute before speaking<span>Always check that your microphone is ON before you start talking.</span></div>
+                <span class="mistake-icon"
+                  ><i data-lucide="mic-off" style="color: var(--red)"></i
+                ></span>
+                <div class="mistake-text">
+                  Forgetting to unmute before speaking<span
+                    >Always check that your microphone is ON before you start
+                    talking.</span
+                  >
+                </div>
               </div>
               <div class="mistake-item">
-                <span class="mistake-icon"><i data-lucide="wifi-off" style="color: var(--red)"></i></span>
-                <div class="mistake-text">Poor internet connection during the meeting<span>Test your connection before the meeting. Switch to WiFi if mobile data is weak.</span></div>
+                <span class="mistake-icon"
+                  ><i data-lucide="wifi-off" style="color: var(--red)"></i
+                ></span>
+                <div class="mistake-text">
+                  Poor internet connection during the meeting<span
+                    >Test your connection before the meeting. Switch to WiFi if
+                    mobile data is weak.</span
+                  >
+                </div>
               </div>
               <div class="mistake-item">
-                <span class="mistake-icon"><i data-lucide="sun" style="color: var(--red)"></i></span>
-                <div class="mistake-text">Bad lighting — face is too dark or too bright<span>Sit facing a light source. Avoid sitting with a bright window directly behind you.</span></div>
+                <span class="mistake-icon"
+                  ><i data-lucide="sun" style="color: var(--red)"></i
+                ></span>
+                <div class="mistake-text">
+                  Bad lighting — face is too dark or too bright<span
+                    >Sit facing a light source. Avoid sitting with a bright
+                    window directly behind you.</span
+                  >
+                </div>
               </div>
               <div class="mistake-item">
-                <span class="mistake-icon"><i data-lucide="smartphone" style="color: var(--red)"></i></span>
-                <div class="mistake-text">Checking your phone while the meeting is active<span>This is disrespectful. Put your phone away or on silent mode.</span></div>
+                <span class="mistake-icon"
+                  ><i data-lucide="smartphone" style="color: var(--red)"></i
+                ></span>
+                <div class="mistake-text">
+                  Checking your phone while the meeting is active<span
+                    >This is disrespectful. Put your phone away or on silent
+                    mode.</span
+                  >
+                </div>
               </div>
               <div class="mistake-item">
-                <span class="mistake-icon"><i data-lucide="message-circle" style="color: var(--red)"></i></span>
-                <div class="mistake-text">Talking over other people or interrupting<span>Wait for the speaker to finish. Use the chat or raise-hand feature to get attention.</span></div>
+                <span class="mistake-icon"
+                  ><i data-lucide="message-circle" style="color: var(--red)"></i
+                ></span>
+                <div class="mistake-text">
+                  Talking over other people or interrupting<span
+                    >Wait for the speaker to finish. Use the chat or raise-hand
+                    feature to get attention.</span
+                  >
+                </div>
               </div>
             </div>
             <div class="split-img">
-              <img src="image/mistakes.jpg" alt="Common mistakes in video calls" />
+              <img
+                src="image/mistakes.jpg"
+                alt="Common mistakes in video calls"
+              />
             </div>
           </div>
         </div>
@@ -2172,13 +2856,9 @@
       <!-- ════════════════════════════════════
        SLIDE 19 — CONCLUSION
   ════════════════════════════════════ -->
-      <section class="slide" data-slide="18">
+      <section class="slide" data-slide="19">
         <div class="slide-inner">
           <h2 class="slide-title anim-up d1">Conclusion</h2>
-          <p class="slide-subtitle anim-up d2">
-            You now know everything you need to join and participate in a
-            professional virtual meeting.
-          </p>
           <div class="conclusion-pts anim-up d3">
             <div class="conc-pt">
               <div class="conc-num">1</div>
@@ -2226,39 +2906,20 @@
       <!-- ════════════════════════════════════
        SLIDE 20 — THANK YOU
   ════════════════════════════════════ -->
-      <section class="slide" data-slide="19">
+      <section class="slide" data-slide="20">
+        <h2 class="slide-title" style="display: none;"></h2>
         <div class="slide-inner">
-          <div class="thankyou-inner">
-            <div
-              class="gm-logo anim-up"
-              style="justify-content: center; gap: 20px; flex-direction: column"
-            >
-
-              <img
-                src="image/image.png"
-                alt="Google Meet Logo"
-                class="meet-logo-large"
-              />
-            </div>
-            <h2 class="ty-title anim-up d1">
-              <span style="color: var(--accent)">Thank</span>
-              <span style="color: var(--accent2)"> You!</span>
-              <span> 🙌</span>
-            </h2>
-            <div class="ty-grid anim-up d3">
-              <div class="ty-card">
-                <div class="ty-emoji"><i data-lucide="monitor"></i></div>
-                Visit meet.google.com to practice joining a meeting
-              </div>
-              <div class="ty-card">
-                <div class="ty-emoji"><i data-lucide="book-open"></i></div>
-                Review these slides any time you need a reminder
-              </div>
-              <div class="ty-card">
-                <div class="ty-emoji"><i data-lucide="rocket"></i></div>
-                Join your first meeting and apply what you learned today
-              </div>
-            </div>
+          <div class="thankyou-card-enhanced anim-up d2">
+            <img
+              src="image/image.png"
+              alt="Google Meet Logo"
+              class="meet-logo-large anim-up d1"
+              style="height: 80px; margin-bottom: 20px"
+            />
+            <h2 class="ty-title-enhanced anim-up d2">Thank You! 🙌</h2>
+            <p class="ty-subtitle-enhanced anim-up d3">
+              You are now ready for any virtual meeting.
+            </p>
           </div>
         </div>
         <!-- Speaker notes: End with encouragement. Tell students they are ready. Invite any final questions. Congratulate them on completing the training. -->
@@ -2306,7 +2967,10 @@
           headerTitle.style.opacity = "0";
           headerTitle.style.transform = "translateX(-10px)";
           setTimeout(() => {
-            headerTitle.innerHTML = titleEl.innerHTML.replace(/<br\s*\/?>/gi, " ");
+            headerTitle.innerHTML = titleEl.innerHTML.replace(
+              /<br\s*\/?>/gi,
+              " ",
+            );
             headerTitle.style.opacity = "0.8";
             headerTitle.style.transform = "translateX(0)";
           }, 200);
