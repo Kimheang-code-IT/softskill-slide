@@ -1064,14 +1064,16 @@
         color: var(--accent);
         font-weight: 700;
       }
-      .slide[data-slide="20"] .slide-subtitle {
+      .slide[data-slide="20"] .slide-subtitle,
+      .slide[data-slide="21"] .slide-subtitle {
         text-align: center;
         margin-left: auto;
         margin-right: auto;
         font-size: 24px;
         max-width: 800px;
       }
-      .slide[data-slide="20"] .slide-title {
+      .slide[data-slide="20"] .slide-title,
+      .slide[data-slide="21"] .slide-title {
         display: block !important;
         text-align: center;
         font-size: 52px;
@@ -1179,7 +1181,8 @@
       }
 
       /* Slide 19 — Conclusion: smaller text, no card box */
-      .slide[data-slide="20"] .conc-pt {
+      .slide[data-slide="20"] .conc-pt,
+      .slide[data-slide="21"] .conc-pt {
         background: transparent;
         border: none;
         box-shadow: none;
@@ -1188,15 +1191,18 @@
         border-bottom: 1px solid var(--border);
         border-radius: 0;
       }
-      .slide[data-slide="20"] .conc-pt:last-child {
+      .slide[data-slide="20"] .conc-pt:last-child,
+      .slide[data-slide="21"] .conc-pt:last-child {
         border-bottom: none;
       }
-      .slide[data-slide="20"] .conc-pt:hover {
+      .slide[data-slide="20"] .conc-pt:hover,
+      .slide[data-slide="21"] .conc-pt:hover {
         transform: translateX(6px);
         background: transparent;
         border-color: var(--accent);
       }
-      .slide[data-slide="20"] .conc-num {
+      .slide[data-slide="20"] .conc-num,
+      .slide[data-slide="21"] .conc-num {
         display: flex;
         align-items: center;
         justify-content: center;
@@ -1209,31 +1215,38 @@
         opacity: 1;
         min-width: 32px;
       }
-      .slide[data-slide="20"] .conc-pt:nth-child(1) .conc-num {
+      .slide[data-slide="20"] .conc-pt:nth-child(1) .conc-num,
+      .slide[data-slide="21"] .conc-pt:nth-child(1) .conc-num {
         background: var(--accent-dim);
         color: var(--accent);
       }
-      .slide[data-slide="20"] .conc-pt:nth-child(2) .conc-num {
+      .slide[data-slide="20"] .conc-pt:nth-child(2) .conc-num,
+      .slide[data-slide="21"] .conc-pt:nth-child(2) .conc-num {
         background: var(--accent2-dim);
         color: var(--accent2);
       }
-      .slide[data-slide="20"] .conc-pt:nth-child(3) .conc-num {
+      .slide[data-slide="20"] .conc-pt:nth-child(3) .conc-num,
+      .slide[data-slide="21"] .conc-pt:nth-child(3) .conc-num {
         background: var(--yellow-dim);
         color: #b8860b;
       }
-      .slide[data-slide="20"] .conc-pt:nth-child(4) .conc-num {
+      .slide[data-slide="20"] .conc-pt:nth-child(4) .conc-num,
+      .slide[data-slide="21"] .conc-pt:nth-child(4) .conc-num {
         background: var(--red-dim);
         color: var(--red);
       }
-      .slide[data-slide="20"] .conc-pt:nth-child(5) .conc-num {
+      .slide[data-slide="20"] .conc-pt:nth-child(5) .conc-num,
+      .slide[data-slide="21"] .conc-pt:nth-child(5) .conc-num {
         background: rgba(139, 92, 246, 0.12);
         color: #8b5cf6;
       }
-      .slide[data-slide="20"] .conc-text {
+      .slide[data-slide="20"] .conc-text,
+      .slide[data-slide="21"] .conc-text {
         font-size: 16px;
         line-height: 1.6;
       }
-      .slide[data-slide="20"] .conclusion-pts {
+      .slide[data-slide="20"] .conclusion-pts,
+      .slide[data-slide="21"] .conclusion-pts {
         gap: 4px;
         margin-top: 24px;
       }
@@ -1644,7 +1657,7 @@
       <div class="header-counter">
         <span class="current" id="counterCurrentHeader">01</span>
         <span style="opacity: 0.5">/</span>
-        <span class="total">22</span>
+        <span class="total">23</span>
       </div>
       <button id="btnNextHeader" class="nav-btn" title="Next (→)">
         <i data-lucide="chevron-right"></i>
@@ -2939,9 +2952,51 @@
       </section>
 
       <!-- ════════════════════════════════════
-       SLIDE 21 — THANK YOU
+       SLIDE 21 — REFERENCES
   ════════════════════════════════════ -->
       <section class="slide" data-slide="21">
+        <div class="slide-inner">
+          <h2 class="slide-title anim-up d1">References</h2>
+          <div class="conclusion-pts anim-up d3">
+            <div class="conc-pt">
+              <div class="conc-num">1</div>
+              <div class="conc-text">
+                <strong>Wikipedia</strong> — Platform history, release data, technical specs, and features of Google Meet.
+              </div>
+            </div>
+            <div class="conc-pt">
+              <div class="conc-num">2</div>
+              <div class="conc-text">
+                <strong>ChatGPT</strong> — AI assistance on structuring pages, drafting curriculum outlines, and wording.
+              </div>
+            </div>
+            <div class="conc-pt">
+              <div class="conc-num">3</div>
+              <div class="conc-text">
+                <strong>Claude</strong> — AI assistance on building soft-skills, detailed presentation planning, and workflow strategies.
+              </div>
+            </div>
+            <div class="conc-pt">
+              <div class="conc-num">4</div>
+              <div class="conc-text">
+                <strong>Google Help for Google Meet</strong> — Official user guides, technical support instructions, and core features layout.
+              </div>
+            </div>
+            <div class="conc-pt">
+              <div class="conc-num">5</div>
+              <div class="conc-text">
+                <strong>Designed by Antigravity</strong> — UI/UX system layout, custom animations, active background, and code architecture.
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Speaker notes: Display the credits and sources utilized to compile this modern, premium Google Meet presentation deck. -->
+      </section>
+
+      <!-- ════════════════════════════════════
+       SLIDE 22 — THANK YOU
+  ════════════════════════════════════ -->
+      <section class="slide" data-slide="22">
         <h2 class="slide-title" style="display: none;"></h2>
         <div class="slide-inner">
           <div class="thankyou-card-enhanced anim-up d2">
